@@ -1,32 +1,33 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { getLatestLaunches, getLaunchBy } from "../../services/spacex";
+import CardLaunch from '@/components/CardLaunch.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getLaunchBy } from '../../services/spacex'
 
-export const prerender = true // server
-
-interface Props{
+interface Props {
   id: string
 }
+const { id } = Astro.params
 
-const {id} = Astro.params
-let launch :import("../../types/api").Doc  | undefined
-if (id) {
-  launch = await getLaunchBy({id})
-}
-export const getStaticPaths = async () => {  
-  const launches = await getLatestLaunches()
-  return launches.map(launch => ({params:{id:launch.id}}))
-  // return [{params:{id:"5eb87cd9ffd86e000604b32a"}}]
-}
-// export const getStaticPaths = (() => {  
-//   return [{params:{id:"5eb87cd9ffd86e000604b32a"}}];
-// }) satisfies GetStaticPaths;
-if (!launch) {
-  throw new Error("No launch found")
-}
-console.log(launch)
+let launch = null
+if (!id) throw new Error('No id provided')
+//  console.log(id)
+if (id.length > 10) launch = await getLaunchBy({ id })
 ---
 
-<Layout title="id">
-  {launch.id}
+<Layout title='id'>
+  {
+    launch == null ? (
+      <h1>Launch not found</h1>
+    ) : (
+      <div class='mx-auto max-w-sm pb-4'>
+        <CardLaunch
+          id={launch.id}
+          img={launch.links.patch.small}
+          success={launch.success}
+          flightNumber={launch.flight_number}
+          details={launch.details}
+        />
+      </div>
+    )
+  }
 </Layout>
