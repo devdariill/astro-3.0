@@ -8,6 +8,27 @@ interface Props {
 }
 const { success, flightNumber, img, id, details } = Astro.props
 const launchStatus = success ? 'success' : 'failure'
+
+// const anim = {
+//   old: {
+//     name: 'fadeIn',
+//     duration: '1.2s',
+//     easing: 'linear',
+//     fillMode: 'forwards',
+//   },
+//   new: {
+//     name: 'fadeOut',
+//     duration: '2.3s',
+//     easing: 'linear',
+//     fillMode: 'backwards',
+//   }
+// };
+
+// const myFade = {
+//   forwards: anim,
+//   backwards: anim,
+// };
+
 ---
 
 <a
@@ -15,7 +36,9 @@ const launchStatus = success ? 'success' : 'failure'
   class='rounded-lg border shadow-md bg-gray-800 border-gray-700 hover:scale-105 hover:bg-gray-700 hover:border-gray-500 transition flex flex-col'
 >
   <picture class='flex justify-center p-4'>
-    <img class='mb-5 rounded-lg' src={img} alt='' />
+    <!-- <img class='mb-5 rounded-lg' src={img} alt=''  transition:name="img"  transition:animate={fade({duration:'2s'})} /> -->
+    <!-- <img class='mb-5 rounded-lg' src={img} alt=''  transition:name="img" transition:animate={myFade} /> -->
+    <img class='mb-5 rounded-lg' src={img} alt=''  transition:name="img" transition:animate="slide" />
   </picture>
 
   <header class="p-4 flex-grow">
