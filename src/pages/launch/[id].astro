@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLatestLaunches, getLaunchBy } from "../../services/spacex";
+
+interface Props{
+  id: string
+}
+
+const {id} = Astro.params
+let launch :import("../../types/api").Doc  | undefined
+if (id) {
+  launch = await getLaunchBy({id})
+}
+export const getStaticPaths = async () => {  
+  const launches = await getLatestLaunches()
+  return launches.map(launch => ({params:{id:launch.id}}))
+  // return [{params:{id:"5eb87cd9ffd86e000604b32a"}}]
+}
+// export const getStaticPaths = (() => {  
+//   return [{params:{id:"5eb87cd9ffd86e000604b32a"}}];
+// }) satisfies GetStaticPaths;
+if (!launch) {
+  throw new Error("No launch found")
+}
+console.log(launch)
+---
+
+<Layout title="id">
+  {launch.id}
+</Layout>
