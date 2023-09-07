@@ -7,7 +7,7 @@ interface Props {
   details: string | null
 }
 const { success, flightNumber, img, id, details } = Astro.props
-const successText = success ? 'success' : 'failure'
+const launchStatus = success ? 'success' : 'failure'
 ---
 
 <a
@@ -19,7 +19,15 @@ const successText = success ? 'success' : 'failure'
   </picture>
 
   <header class="p-4 flex-grow">
-    <span class="text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Por hacer</span>
+    <span 
+    class:list={["text-xs font-semibold mr-2 px-2.5 py-0.5 rounded",
+    {
+      "bg-green-100 text-green-800": success,
+      "bg-red-100 text-red-800": !success,
+    }]
+      
+    }
+    class="">{launchStatus}</span>
     <h2 class="my-2 text-2xl font-bold tracking-tight text-white">Flight # {flightNumber}</h2>
     <p class="mb-4 font-light text-gray-400">{details && details?.length > 100 ? details.slice(0,100) + "..." : details}</p>
   </header>
