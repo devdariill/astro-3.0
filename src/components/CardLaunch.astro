@@ -18,11 +18,9 @@ const successText = success ? 'success' : 'failure'
     <img class='mb-5 rounded-lg' src={img} alt='' />
   </picture>
 
-  <!-- <header class="p-4 flex-grow"> -->
-  <header class="p-4">
+  <header class="p-4 flex-grow">
     <span class="text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Por hacer</span>
-    <!-- <h2 class="my-2 text-2xl font-bold tracking-tight text-white">Flight # {flightNumber}</h2> -->
-    <h2 class="my-2 text-2xl font-bold text-white">Flight # {flightNumber}</h2>
+    <h2 class="my-2 text-2xl font-bold tracking-tight text-white">Flight # {flightNumber}</h2>
     <p class="mb-4 font-light text-gray-400">{details && details?.length > 100 ? details.slice(0,100) + "..." : details}</p>
   </header>
 </a>
