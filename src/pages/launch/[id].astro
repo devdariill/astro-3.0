@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import { getLatestLaunches, getLaunchBy } from "../../services/spacex";
 
+export const prerender = true // server
+
 interface Props{
   id: string
 }
