@@ -3,6 +3,8 @@ import CardLaunch from '@/components/CardLaunch.astro'
 import Layout from '../../layouts/Layout.astro'
 import { getLaunchBy } from '../../services/spacex'
 
+export const prerender = false
+
 interface Props {
   id: string
 }
