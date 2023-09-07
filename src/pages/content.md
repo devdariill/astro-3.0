@@ -1,3 +1,8 @@
+---
+  title: 'Contenido de la pagina'
+  layout: '../layouts/Layout.astro'
+---
+
 # Esto es un ejemplo de un articulo
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat architecto eum optio soluta in reprehenderit unde enim, molestiae dicta consectetur?
